@@ -33,4 +33,13 @@ router.delete('/:id', (req, res) => {
 
 });
 
+router.patch('/:id', (req,res) => {
+    const planttoUpdate = Plant.findById(parseInt(req.params.id))
+    const updatedPlant= planttoUpdate.update({weeksKeptAlive: planttoUpdate.weeksKeptAlive + 1})
+    res.json({plant: updatedPlant})
+    
+});
+
+
+
 module.exports = router;

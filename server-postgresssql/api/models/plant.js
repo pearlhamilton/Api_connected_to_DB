@@ -1,8 +1,11 @@
 const plantsData = [
-    { id: 1, name: "Devil's Ivy", lightNeeds: "Not fussy"},
-    { id: 2, name: 'Boston Fern', lightNeeds: "Lower light"},
-    { id: 3, name: 'Aloe Vera', lightNeeds: "Bright light"}
+    { id: 1, name: "Devil's Ivy", lightNeeds: "Not fussy", weeksKeptAlive: 0},
+    { id: 2, name: 'Boston Fern', lightNeeds: "Lower light", weeksKeptAlive: 0 },
+    { id: 3, name: 'Aloe Vera', lightNeeds: "Bright light", weeksKeptAlive: 0}
 ]
+
+
+// const db = require ('../dbConfig')
 
 
 class Plant {
@@ -10,6 +13,7 @@ class Plant {
         this.id = data.id;
         this.name = data.name;
         this.lightNeeds = data.lightNeeds;
+        this.weeksKeptAlive = data.weeksKeptAlive
     }
 
     static get all() {
@@ -43,6 +47,20 @@ class Plant {
                 plantsData.splice(plantsData.indexOf(plantToDelete),1)
 
     }
+
+    update(updateData) {
+        const plantData = plantsData.find(plant => plant.id === this.id)
+        const index = plantsData.indexOf(plantData)
+        const updatedPlantData = { ...plantData, ...updateData}
+        plantsData[index] = updatedPlantData
+        const updatedPlant = new Plant(updatedPlantData)
+        console.log(updatedPlant)
+        return updatedPlant
+
+    }
+
 }
+
+
 
 module.exports = Plant;
