@@ -8,9 +8,12 @@ server.use(express.json());
 
 
 
+const plantRoutes = require('./controllers/plants')
 
 
 //root Route 
+
+server.use('/plants', plantRoutes)
 
 server.get('/', (req, res) => res.send('Hello, Pearl here!'))
 
