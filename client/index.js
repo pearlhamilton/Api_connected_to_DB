@@ -17,7 +17,7 @@ function addAllPlants(){
 
 
 
-newPlantForm.addEventListener('submit', changeColor)
+newPlantForm.addEventListener('submit', submitPlant)
 
 
 function changeColor(e){
@@ -25,6 +25,30 @@ function changeColor(e){
     document.querySelector('body').style.color ="green";
 }
 
+
+function submitPlant(e) {
+    e.preventDefault()
+    const plantData ={
+        name: e.target.plantName.value,
+        light: e.target.light.value,
+        weeks_kept_alive: e.target.weeks_kept_alive.value
+        
+    }
+
+    const options = { 
+        method: 'POST',
+        body: JSON.stringify(plantData),
+        headers: { "Content-Type": "application/json" }
+    };
+
+    fetch('http://localhost:3000/plants', options)
+        .then(r => r.json())
+        .then(addEachPlant)
+        .then(() => e.target.reset())
+        .catch(console.warn)
+
+    console.log(plantData)
+}
 
 //helpers
 

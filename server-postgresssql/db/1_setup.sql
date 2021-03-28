@@ -7,3 +7,14 @@ CREATE TABLE plants (
     weeks_kept_alive int NOT NULL
 );
 
+DROP TABLE IF EXISTS plantsowner;
+
+CREATE TABLE plantsowner (
+    id serial PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    owner varchar(255) NOT NULL
+);
+
+
+
+
