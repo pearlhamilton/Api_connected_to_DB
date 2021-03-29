@@ -1,0 +1,29 @@
+services:
+  api:
+    container_name: dev_api
+    ports: 
+      - 3000:3000
+    environment: 
+      - PGUSER=pearlhamilton
+      - PGHOST=db
+      - PGPASSWORD=pass
+      - PGDATABASE=plants_dev
+      - PGPORT=5432
+      - NODE_ENV=development
+    depends_on:
+      - db
+    command: bash -c "npm install && npm run seedDev && npm run dev"
+
+  db:
+    container_name: demo_dev_db
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment: 
+      - POSTGRES_DB=plants_dev
+      - POSTGRES_USER=pearlhamilton
+      - POSTGRES_PASSWORD=pass
+volumes:
+  dbdata:
+networks: 
+  default:
+    name: demo_app_dev
