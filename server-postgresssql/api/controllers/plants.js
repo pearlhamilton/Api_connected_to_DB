@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const plant = await Plant.create(req.body.name, req.body.light, req.body.weeks_kept_alive)
-        res.json(plant)
+        res.json(plant).status(201)
     } catch(err) {
         res.status(404).json({err})
     }

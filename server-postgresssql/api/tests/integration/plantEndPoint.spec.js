@@ -1,4 +1,3 @@
-
 describe('plants endpoints', () => {
     let api;
     beforeEach(async () => {

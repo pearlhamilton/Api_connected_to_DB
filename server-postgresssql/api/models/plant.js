@@ -1,5 +1,5 @@
 
-const db = require ('../dbConfig')
+const db = require ('../dbConfig/init')
 
 
 class Plant {
@@ -10,16 +10,12 @@ class Plant {
         this.weeks_kept_alive = data.weeks_kept_alive
     }
 
-    // static get all() {
-    //     const plants = plantsData.map((plant) => new Plant(plant));
-    //     return plants;
-    // }
-
+   
 
     static get all() {
         return new Promise (async (resolve, reject) => {
             try {
-                const plantsData = await db.query(`SELECT * FROM plants;`)
+                const plantsData = await db.query(`SELECT * FROM plants;`) 
                 const plants = plantsData.rows.map(plant => new Plant(plant))
                 resolve(plants);
             } catch (err) {

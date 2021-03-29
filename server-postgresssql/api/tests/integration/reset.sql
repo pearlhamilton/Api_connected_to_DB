@@ -6,9 +6,3 @@ VALUES
     ('Plant1', 'Not fussy', 0),
     ('Plant2','Lower light', 0),
     ('Plant3','Bright light', 0);
-   
-
-
-
-
-    
